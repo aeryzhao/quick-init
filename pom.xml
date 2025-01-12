@@ -223,7 +223,7 @@
                 <version>1.4.9</version>
                 <configuration>
                     <!-- 指定推送到docker hub的仓库 -->
-                    <repository>${project.groupId}/${project.artifactId}</repository>
+                    <repository>aeryzhao/${project.artifactId}</repository>
                     <tag>${project.version}</tag>
                     <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
                     <!-- 这个是你要在dockerfile里使用的maven变量，在此处配置后可在dockerfile里使用该 变量 -->
