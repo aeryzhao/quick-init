@@ -5,9 +5,9 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum CommonErrorMessageEnum  implements AbstractErrorMessageEnum{
-    DEFAULT(-1,"出错了"),//默认句柄，可以用于输出内置异常，如系统异常、未知业务异常、提示异常
-    UN_IMPLEMENT(-2,"未实现"),//未实现
+public enum CommonErrorMessageEnum  implements AbstractErrorMessageEnum {
+    DEFAULT(-1,"出错了"),
+    UN_IMPLEMENT(-2,"未实现"),
     ILLEGAL_ARGUMENT(100000,"错误参数"),
     NULL_VALUE(100001,"不允许的空值"),
     NO_PERMISSION(100002,"无权访问他人数据"),
@@ -26,5 +26,4 @@ public enum CommonErrorMessageEnum  implements AbstractErrorMessageEnum{
     ;
     private Integer code;
     private String errorMessage;
-
 }
