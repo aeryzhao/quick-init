@@ -48,3 +48,9 @@ secure:
       - /user/logout
       - /**/test/**
       - /**/public/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
