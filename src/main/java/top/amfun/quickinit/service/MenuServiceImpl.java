@@ -1,11 +1,13 @@
 package top.amfun.quickinit.service;
 
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.extra.spring.SpringUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import top.amfun.quickinit.annotation.LogRecord;
 import top.amfun.quickinit.common.PageResponse;
 import top.amfun.quickinit.entity.Menu;
 import top.amfun.quickinit.entity.RoleMenu;
@@ -23,6 +25,7 @@ class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements MenuServi
     @Autowired
     private RoleMenuMapper roleMenuMapper;
 
+    @LogRecord(type = "menu")
     @Override
     public List<Menu> getMenuList(Long userId) {
         return menuMapper.getMenuListByUserId(userId);
@@ -30,6 +33,7 @@ class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements MenuServi
 
     @Override
     public List<Menu> allMenuList(List<Long> roleIdes) {
+        SpringUtil.getBean(RoleMenuService.class);
         LambdaQueryWrapper<RoleMenu> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.in(RoleMenu::getRoleId, roleIdes);
         List<RoleMenu> roleMenus = roleMenuMapper.selectList(queryWrapper);
