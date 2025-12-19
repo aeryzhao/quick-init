@@ -23,11 +23,11 @@ public class AsyncConfig implements AsyncConfigurer {
     /**
      * 设置 ThreadPoolExecutor 的核心池大小
      */
-    private static final int CORE_POOL_SIZE = 10;
+    private static final int CORE_POOL_SIZE = 20;
     /**
      * 设置 ThreadPoolExecutor 的线程数最大值
      */
-    private static final int MAX_POOL_SIZE = 800;
+    private static final int MAX_POOL_SIZE = 20;
     /**
      * 设置 ThreadPoolExecutor 的等待队列的容量。
      */
@@ -67,12 +67,7 @@ public class AsyncConfig implements AsyncConfigurer {
 
     @Override
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
-        return new AsyncUncaughtExceptionHandler() {
-            @Override
-            public void handleUncaughtException(Throwable ex , Method method , Object... params) {
-                log.error("Async自定义线程池发生未知异常, {}", ex.getMessage());
-            }
-        };
+        return (ex, method, params) -> log.error("Async自定义线程池发生未知异常, {}", ex.getMessage());
     }
 
 }
